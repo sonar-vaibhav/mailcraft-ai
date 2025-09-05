@@ -1,0 +1,218 @@
+/* Mail Craft Content Script Styles */
+
+/* Main Rewrite Button */
+.mail-craft-rewrite-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 10px 0;
+    padding: 10px 16px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Google Sans', Roboto, Arial, sans-serif;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.mail-craft-rewrite-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.mail-craft-rewrite-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Tone Options Container */
+.mail-craft-tone-options {
+    display: flex;
+    gap: 8px;
+    margin: 10px 0;
+    padding: 12px;
+    background: #f8f9fa;
+    border: 1px solid #dadce0;
+    border-radius: 6px;
+    flex-wrap: wrap;
+}
+
+/* Tone Buttons */
+.mail-craft-tone-btn, .mail-craft-custom-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: white;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    color: #5f6368;
+    transition: all 0.2s ease;
+    font-family: 'Google Sans', Roboto, Arial, sans-serif;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.mail-craft-tone-btn:hover, .mail-craft-custom-btn:hover {
+    background: #e8f0fe;
+    border-color: #1a73e8;
+    color: #1a73e8;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(26, 115, 232, 0.2);
+}
+
+.mail-craft-tone-btn:active, .mail-craft-custom-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(26, 115, 232, 0.2);
+}
+
+.mail-craft-tone-btn:disabled, .mail-craft-custom-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Button loading state */
+.mail-craft-rewrite-btn.loading, .mail-craft-tone-btn.loading, .mail-craft-custom-btn.loading {
+    position: relative;
+    color: transparent;
+}
+
+.mail-craft-rewrite-btn.loading::after, .mail-craft-tone-btn.loading::after, .mail-craft-custom-btn.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    margin: -6px 0 0 -6px;
+    border: 2px solid #1a73e8;
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: mail-craft-spin 1s linear infinite;
+}
+
+@keyframes mail-craft-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Notification Styles */
+.mail-craft-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 12px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 10000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    max-width: 300px;
+    word-wrap: break-word;
+    font-family: 'Google Sans', Roboto, Arial, sans-serif;
+    animation: mail-craft-slide-in 0.3s ease-out;
+}
+
+@keyframes mail-craft-slide-in {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Success notification */
+.mail-craft-notification.success {
+    background: #34a853;
+    color: white;
+}
+
+/* Error notification */
+.mail-craft-notification.error {
+    background: #ea4335;
+    color: white;
+}
+
+/* Loading notification */
+.mail-craft-notification.loading {
+    background: #fbbc04;
+    color: #202124;
+}
+
+/* Info notification */
+.mail-craft-notification.info {
+    background: #1a73e8;
+    color: white;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .mail-craft-tone-options {
+        flex-wrap: wrap;
+        gap: 4px;
+        padding: 8px;
+    }
+    
+    .mail-craft-tone-btn, .mail-craft-custom-btn {
+        padding: 6px 10px;
+        font-size: 11px;
+    }
+    
+    .mail-craft-tone-btn span:last-child, .mail-craft-custom-btn span:last-child {
+        display: none; /* Hide text on mobile, show only emoji */
+    }
+    
+    .mail-craft-rewrite-btn {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .mail-craft-tone-btn, .mail-craft-custom-btn {
+        background: #3c4043;
+        border-color: #5f6368;
+        color: #e8eaed;
+    }
+    
+    .mail-craft-tone-btn:hover, .mail-craft-custom-btn:hover {
+        background: #1a73e8;
+        border-color: #1a73e8;
+        color: white;
+    }
+    
+    .mail-craft-tone-options {
+        background: #2d2d2d;
+        border-color: #5f6368;
+    }
+}
+
+/* Ensure buttons don't interfere with Gmail's layout */
+.mail-craft-rewrite-btn, .mail-craft-tone-options {
+    position: relative;
+    z-index: 1;
+}
+
+/* Ensure native select renders above Gmail editor overlays */
+.mail-craft-tone-select {
+    position: relative;
+    z-index: 3;
+}
+
+/* Hide buttons when Gmail is in fullscreen mode */
+body[aria-hidden="true"] .mail-craft-rewrite-btn,
+body[aria-hidden="true"] .mail-craft-tone-options {
+    display: none;
+}

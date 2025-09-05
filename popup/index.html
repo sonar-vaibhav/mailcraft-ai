@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mail Craft</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Setup Stage (First Time Users) -->
+        <div id="setup-stage" class="stage">
+            <div class="header">
+                <div class="logo">
+                    <img src="../icons/logo.png" alt="Mail Craft" class="logo-img">
+                    <h1>Mail Craft</h1>
+                </div>
+                <p class="subtitle">AI-Powered Email Assistant</p>
+            </div>
+
+            <div class="setup-content">
+                <div class="setup-card">
+                    <h2>🔑 Setup Your API Key</h2>
+                    <p class="description">
+                        To use Mail Craft, you'll need a Google Gemini API key. Don't worry, it's completely free!
+                    </p>
+                    
+                    <div class="input-group">
+                        <label for="apiKey">Google Gemini API Key:</label>
+                        <div class="input-container">
+                            <input type="password" id="apiKey" placeholder="AIza..." class="api-input">
+                            <button id="toggleApiKey" class="toggle-btn">👁️</button>
+                        </div>
+                    </div>
+
+                    <div class="help-section">
+                        <p class="help-text">
+                            <strong>Don't have an API key?</strong><br>
+                            <a href="https://aistudio.google.com/apikey" target="_blank">Get one here</a> (completely free!)
+                        </p>
+                    </div>
+
+                    <button id="saveApiKey" class="save-btn">
+                        <span class="btn-text">Save & Continue</span>
+                        <span class="btn-loading" style="display: none;">⏳ Validating...</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Guide Stage (After Setup) -->
+        <div id="working-stage" class="stage" style="display: none;">
+            <div class="header">
+                <div class="logo">
+                    <img src="../icons/logo.png" alt="Mail Craft" class="logo-img">
+                    <h1>Mail Craft</h1>
+                </div>
+                <p class="subtitle">AI-Powered Email Assistant</p>
+            </div>
+
+            <div class="guide-content">
+                <!-- How to Use -->
+                <section class="guide-section">
+                    <h2>📖 How to Use Mail Craft</h2>
+                    
+                    <div class="guide-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>🤖 Craft It Button</h3>
+                            <p>When composing an email in Gmail, you'll see a <strong>"Craft It"</strong> button below the compose box.</p>
+                            <p>Click it to get AI-powered tone options:</p>
+                            <ul>
+                                <li><strong>👔 Formal</strong> - Professional and business-like</li>
+                                <li><strong>😊 Friendly</strong> - Warm and approachable</li>
+                                <li><strong>📝 Concise</strong> - Short and to the point</li>
+                                <li><strong>💪 Persuasive</strong> - Compelling and convincing</li>
+                                <li><strong>🎯 Custom</strong> - Your own instructions</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="guide-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>⚡ Quick Shortcut: !@#</h3>
+                            <p>Type <code>!@#</code> at the end of your email, followed by your custom instruction.</p>
+                            <div class="example-box">
+                                <strong>Example:</strong><br>
+                                <code>Hi John, I need to reschedule our meeting. !@# Make this more polite and professional</code>
+                            </div>
+                            <p>Press <strong>Shift + #</strong> to trigger the AI rewrite with your custom prompt!</p>
+                        </div>
+                    </div>
+
+                    <div class="guide-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>✨ What Happens Next</h3>
+                            <p>Mail Craft will:</p>
+                            <ul>
+                                <li>Read your email content (subject + body)</li>
+                                <li>Send it to Google Gemini AI</li>
+                                <li>Rewrite it according to your chosen tone</li>
+                                <li>Replace the content in your compose box</li>
+                                <li>Show a success notification</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tips -->
+                <section class="tips-section">
+                    <h2>💡 Pro Tips</h2>
+                    <div class="tips-grid">
+                        <div class="tip-card">
+                            <span class="tip-icon">🎯</span>
+                            <h4>Be Specific</h4>
+                            <p>Use detailed prompts like "make this more urgent" or "add a call-to-action"</p>
+                        </div>
+                        <div class="tip-card">
+                            <span class="tip-icon">📝</span>
+                            <h4>Write First</h4>
+                            <p>Always write some content before using AI - it works better with context</p>
+                        </div>
+                        <div class="tip-card">
+                            <span class="tip-icon">🔄</span>
+                            <h4>Try Different Tones</h4>
+                            <p>Experiment with different tones to find what works best for your audience</p>
+                        </div>
+                        <div class="tip-card">
+                            <span class="tip-icon">⚡</span>
+                            <h4>Use Shortcuts</h4>
+                            <p>The !@# shortcut is fastest for custom prompts while typing</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Settings -->
+                <section class="settings-section">
+                    <h2>⚙️ Settings</h2>
+                    <div class="settings-content">
+                        <div class="setting-item">
+                            <span class="setting-label">API Key Status:</span>
+                            <span id="apiKeyStatus" class="setting-value">✅ Connected</span>
+                        </div>
+                        <button id="changeApiKey" class="settings-btn">🔧 Change API Key</button>
+                    </div>
+                </section>
+            </div>
+
+            <footer class="footer">
+                <p>🚀 <strong>Ready to enhance your emails!</strong> Open Gmail and start composing.</p>
+            </footer>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
